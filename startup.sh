@@ -20,9 +20,16 @@ mv docker ./my-site
 cd my-site
 docker-compose up -d
 
-# 最後に、docker-compose.ymlに合わせたDB設定をlaravelに書いて終了!
-# DB_CONNECTION=mysql(コンテナ)
-# DB_HOST=mysql
+docker exec -it my-site_web_1 bash
+chmod -R 777 /var/www/myapp/storage
+chmod -R 777 /var/www/myapp/bootstrap
+php artisan key:generate
+
+# docker-compose.ymlに合わせたDB設定をlaravelの.envにに記述
+# 最後に、php artisan migrateして終了!
+
+# DB_CONNECTION=mysql
+# DB_HOST=mysql(servicesに書いてあるDBサービス名)
 # DB_PORT=3306
 # DB_DATABASE=db
 # DB_USERNAME=user
