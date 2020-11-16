@@ -19,6 +19,7 @@ mv docker ./my-site
 
 # コンテナ群の起動 キャッシュを使わずに、デタッチで起動する
 # no-cacheしないと過去の設定が生きたコンテナが立ってしまうことがある
+# 既に他のプロジェクトで同様のコンテナを立てている際は、--force-recreate で強制的にコンテナを作り直すことができる
 cd my-site
 docker-compose up -d --no-cache
 
