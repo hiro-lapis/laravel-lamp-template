@@ -15,15 +15,15 @@ mv docker-compose.yml myapp/.
 # webコンテナDockerfile
 # apche設定ファイル
 # php設定ファイル
-mv docker my-site/.
+mv docker myapp/.
 
 # コンテナ群の起動 キャッシュを使わずに、デタッチで起動する
 # no-cacheしないと過去の設定が生きたコンテナが立ってしまうことがある
 # 既に他のプロジェクトで同様のコンテナを立てている際は、--force-recreate で強制的にコンテナを作り直すことができる
-cd my-site
+cd myapp
 docker-compose up -d --no-cache
 
-docker exec -it my-site_web_1 bash
+docker exec -it myapp_web_1 bash
 chmod -R 777 /var/www/myapp/storage
 chmod -R 777 /var/www/myapp/bootstrap
 php artisan key:generate
